@@ -1,7 +1,7 @@
 import React from "react";
 import { Parser } from "html-to-react";
 
-import belwe from "./font/BelweBoldBT.ttf";
+import belwe from "../font/BelweBoldBT.ttf";
 
 const parser = new Parser();
 
@@ -53,7 +53,7 @@ export const Frame = () =>
     y="0"
     width="764"
     height="1100"
-    href={require("./img/mNeutral.png")}
+    href={require("../img/mNeutral.png")}
   />;
 
 export const Cost = ({ children, fontFamily }) =>
@@ -65,7 +65,7 @@ export const Cost = ({ children, fontFamily }) =>
       y="0"
       width="179"
       height="177"
-      href={require("./img/gem.png")}
+      href={require("../img/gem.png")}
     />
     {children &&
       <text
@@ -94,7 +94,7 @@ export const Image = ({ id, clip }) =>
     y="78"
     width="563"
     height="563"
-    href={require(`./img/${id}.jpg`)}
+    href={require(`../img/${id}.jpg`)}
     clipPath={clip && "url(#image-clip-path)"}
   />;
 
@@ -107,7 +107,7 @@ export const Title = ({ children, fontFamily, flow }) =>
       y="544"
       width="608"
       height="144"
-      href={require("./img/title.png")}
+      href={require("../img/title.png")}
     />
     <path
       d="M132.136068,658.415668 L158.602985,658.415668 L195.542113,654.574341 L239.403219,646.250954 L286.712401,636.537631 L330.569125,627.824309 L370.500212,621.544734 L417.380027,616.536918 L468.965349,612.62111 L514.245993,612.065751 L561.730426,611.499499 L603.168677,613.11738 L633.386442,620.9085"
@@ -147,7 +147,7 @@ export const Rarity = ({ id }) =>
     y="606"
     width="146"
     height="146"
-    href={require(`./img/rarity-${id}.png`)}
+    href={require(`../img/rarity-${id}.png`)}
   />;
 
 export const Set = ({ id }) =>
@@ -158,7 +158,7 @@ export const Set = ({ id }) =>
     y="726"
     width="281"
     height="244"
-    href={require(`./img/bg-${id}.png`)}
+    href={require(`../img/bg-${id}.png`)}
   />;
 
 export const Text = ({ children, rich }) => {
@@ -218,7 +218,7 @@ export const Strength = ({ children, fontFamily }) =>
       y="0"
       width="214"
       height="238"
-      href={require("./img/attack.png")}
+      href={require("../img/attack.png")}
     />
     {children &&
       <text
@@ -248,7 +248,7 @@ export const Health = ({ children, fontFamily }) =>
       y="0"
       width="167"
       height="218"
-      href={require("./img/health.png")}
+      href={require("../img/health.png")}
     />
     {children &&
       <text
@@ -278,7 +278,7 @@ export const Race = ({ children, fontFamily }) =>
       y="0"
       width="529"
       height="106"
-      href={require("./img/race.png")}
+      href={require("../img/race.png")}
     />
     {children &&
       <text

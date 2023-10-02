@@ -1,0 +1,47 @@
+{
+    "player1": {
+        "cards": [
+            {
+                "name": "Rodolfo",
+                "desc": "This a one",
+                "id": "fedex"
+            },
+            {
+                "name": "miriam",
+                "desc": "This a miriam",
+                "id": "fedex"
+            },
+            {
+                "name": "riquelme",
+                "desc": "This a riquelme",
+                "id": "pili"
+            },
+            {
+                "name": "riquelme2",
+                "desc": "This a new riquelme",
+                "id": "pili"
+            }
+        ]
+    },
+    "player2": {
+        "cards": [
+            {
+                "name": "Rodolfo2",
+                "desc": "This another rodolfo",
+                "id": "pili",
+                "health": 2,
+                "attack": 2
+            },
+            {
+                "name": "miriam2",
+                "desc": "This another miriam",
+                "id": "fedex"
+            },
+            {
+                "name": "raul",
+                "desc": "This a brand new raul",
+                "id": "fedex"
+            }
+        ]
+    }
+}

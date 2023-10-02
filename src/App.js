@@ -1,35 +1,37 @@
+import { Divider } from '@mui/material';
 import './App.css';
-import {
-  Card,
-  Frame,
-  Cost,
-  Image,
-  Title,
-  Set,
-  Rarity,
-  Text,
-  Strength,
-  Health,
-  Race
-} from "./HearthstoneCard";
+import Board from './components/Board';
+import { useState, useEffect } from 'react';
+
+
 
 function App() {
+
+  const [gameInfo, setGameInfo] = useState({
+      "player1": {"cards": []},
+      "player2": {"cards": []}
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Make an AJAX call to retrieve JSON data
+    fetch('/example.json')
+      .then((response) => response.json())
+      .then((data) => {
+        setGameInfo(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setGameInfo(false);
+      });
+  }, []); // The empty array [] as the second argument means this effect runs once after initial render
+
   return (
     <div className="App">
-      <Card>
-        <Image id="pili" clip />
-        <Frame />
-        <Cost fontFamily="Belwe">0</Cost>
-        <Race fontFamily="Belwe">Murloc</Race>
-        <Health fontFamily="Belwe">1</Health>
-        <Strength fontFamily="Belwe">1</Strength>
-        <Rarity id="common" />
-        <Title fontFamily="Belwe" flow>Pili</Title>
-        <Set id="gvg" />
-        <Text rich>
-          {"Reina de los murlocs"}
-        </Text>
-      </Card>
+      <Board cardsJson={gameInfo.player1.cards}/>
+      <Divider/>
+      <Board cardsJson={gameInfo.player2.cards}/>
     </div>
   );
 }
