@@ -4,22 +4,26 @@
             {
                 "name": "Rodolfo",
                 "desc": "This a one",
-                "id": "fedex"
+                "id": "fedex",
+                "unique_id": 1
             },
             {
                 "name": "miriam",
                 "desc": "This a miriam",
-                "id": "fedex"
+                "id": "fedex",
+                "unique_id": 2
             },
             {
                 "name": "riquelme",
                 "desc": "This a riquelme",
-                "id": "pili"
+                "id": "pili",
+                "unique_id": 3
             },
             {
                 "name": "riquelme2",
                 "desc": "This a new riquelme",
-                "id": "pili"
+                "id": "pili",
+                "unique_id": 4
             }
         ]
     },
@@ -29,19 +33,24 @@
                 "name": "Rodolfo2",
                 "desc": "This another rodolfo",
                 "id": "pili",
-                "health": 2,
-                "attack": 2
+                "unique_id": 11
             },
             {
                 "name": "miriam2",
                 "desc": "This another miriam",
-                "id": "fedex"
+                "id": "fedex",
+                "unique_id": 12
             },
             {
                 "name": "raul",
                 "desc": "This a brand new raul",
-                "id": "fedex"
+                "id": "fedex",
+                "unique_id": 13
             }
         ]
-    }
+    },
+    "events": [
+            {"type": "attack", "target_id": 13, "source_id": 4},
+            {"type": "attack", "target_id": 4, "source_id": 11}
+    ]
 }
