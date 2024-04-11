@@ -5,52 +5,71 @@
                 "name": "Rodolfo",
                 "desc": "This a one",
                 "id": "fedex",
-                "unique_id": 1
+                "unique_id": 1,
+                "initial_hp": 10,
+                "initial_attack": 2
             },
             {
-                "name": "miriam",
+                "name": "Miriam",
                 "desc": "This a miriam",
                 "id": "fedex",
-                "unique_id": 2
+                "unique_id": 2,
+                "initial_hp": 2,
+                "initial_attack": 4
             },
             {
-                "name": "riquelme",
+                "name": "Riquelme",
                 "desc": "This a riquelme",
                 "id": "pili",
-                "unique_id": 3
+                "unique_id": 3,
+                "initial_hp": 5,
+                "initial_attack": 1
             },
             {
-                "name": "riquelme2",
+                "name": "Toronto",
                 "desc": "This a new riquelme",
                 "id": "pili",
-                "unique_id": 4
+                "unique_id": 4,
+                "initial_hp": 9,
+                "initial_attack": 8
             }
         ]
     },
     "player2": {
         "cards": [
             {
-                "name": "Rodolfo2",
+                "name": "Pascual",
                 "desc": "This another rodolfo",
                 "id": "pili",
-                "unique_id": 11
+                "unique_id": 11,
+                "initial_hp": 2,
+                "initial_attack": 5
             },
             {
-                "name": "miriam2",
+                "name": "Sarah",
                 "desc": "This another miriam",
                 "id": "fedex",
-                "unique_id": 12
+                "unique_id": 12,
+                "initial_hp": 2,
+                "initial_attack": 2
             },
             {
-                "name": "raul",
+                "name": "Miguel",
                 "desc": "This a brand new raul",
                 "id": "fedex",
-                "unique_id": 13
+                "unique_id": 13,
+                "initial_hp": 1,
+                "initial_attack": 6
             }
         ]
     },
     "events": [
-            {"type": "attack", "target_id": 13, "source_id": 4},
-            {"type": "attack", "target_id": 4, "source_id": 11}
+            
+            {"type": "attack", "source_id": 11, "target_id": 2},
+            {"type": "attack", "source_id": 1, "target_id": 11},
+            {"type": "attack", "source_id": 12, "target_id": 4},
+            {"type": "attack", "source_id": 2, "target_id": 13},
+            {"type": "attack", "source_id": 13, "target_id": 1},
+            {"type": "attack", "source_id": 3, "target_id": 11}
     ]
 }

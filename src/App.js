@@ -4,6 +4,20 @@ import Board from './components/Board';
 import { useState, useEffect, useContext, useMemo, Children, useRef } from 'react';
 import { Context } from './Context';
 
+const processGameInfo = (gameInfo) => {
+  const elements = {}
+  gameInfo.player1.cards.forEach((card) => {
+    card.hp = card.initial_hp
+    card.attack = card.initial_attack
+    console.log(card)
+  })
+  gameInfo.player2.cards.forEach((card) => {
+    card.hp = card.initial_hp
+    card.attack = card.initial_attack
+  })
+
+  return gameInfo
+}
 
 function App() {
 
@@ -12,12 +26,15 @@ function App() {
       "player2": {"cards": []}
   });
   const [loading, setLoading] = useState(true);
+  const [eventSequence, setEventSequence] = useState(0);
+  const con = useContext(Context)
+  con.gameInfo = gameInfo
 
-  useEffect((e) => {
+  useEffect(() => {
     fetch('/example.json')
       .then((response) => response.json())
       .then((data) => {
-        setGameInfo(data);
+        setGameInfo(processGameInfo(data));
         setLoading(false);
       })
       .catch((error) => {
@@ -28,17 +45,19 @@ function App() {
 
   const startAnimation = () => {
 
-    // Access the child component using the ref
-    const attacker = con.elements[0].current
-    const target = con.elements[8].current
+    const { source_id , target_id } = con.gameInfo.events[eventSequence]
 
-    console.log(con.elements[1].current)
-    
+    if (eventSequence >= con.gameInfo.events.length - 1) {
+      console.log('No more events')
+      return 
+    }
+
+    const attacker = con.elements[source_id].current
+    const target = con.elements[target_id].current
     
     attacker.style.backgroundColor = 'red'
     target.style.backgroundColor = 'green'
 
-    console.log('STARTING ANIMATION')
     const startCoordinates = attacker.getBoundingClientRect();
     const endCoordinates = target.getBoundingClientRect();
     // Calculate the direction and distance for animation
@@ -51,21 +70,20 @@ function App() {
 
     setTimeout(() => {
       attacker.style.transform = 'translate(0, 0)';
+      attacker.style.backgroundColor = '#fff'
+      target.style.backgroundColor = '#fff'
+      setEventSequence(eventSequence + 1)
     }, animationDuration);
   };
 
-  const con = useContext(Context)
-  useEffect(() => {
-      con.gameInfo = gameInfo
-  }, [gameInfo]);
-
   return (
     <div className="App">
+      <h1>GAME: EVENT #{eventSequence}</h1>
       <Context.Provider value={con}>
-        <Board cardsJson={gameInfo.player1.cards}/>
+        <Board player={1}/>
         <Divider/>
-        <Board cardsJson={gameInfo.player2.cards}/>
-        <input type='button' onClick={() => { startAnimation() }} value='holis'/>
+        <Board player={2}/>
+        <input type='button' onClick={() => { startAnimation() }} value='Next Event'/>
       </Context.Provider>
     </div>
   );
