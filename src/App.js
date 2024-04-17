@@ -63,15 +63,15 @@ function App() {
     // Calculate the direction and distance for animation
     const deltaX = endCoordinates.left - startCoordinates.left;
     const deltaY = endCoordinates.top - startCoordinates.top;
-    const animationDuration = 1000; // Set the duration in milliseconds
+    const animationDuration = 500; // Set the duration in milliseconds
 
     attacker.style.transition = `transform ${animationDuration}ms ease-in-out`;
     attacker.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
 
     setTimeout(() => {
       attacker.style.transform = 'translate(0, 0)';
-      attacker.style.backgroundColor = '#fff'
-      target.style.backgroundColor = '#fff'
+      attacker.style.backgroundColor = '#ccc'
+      target.style.backgroundColor = '#ccc'
       setEventSequence(eventSequence + 1)
     }, animationDuration);
   };
