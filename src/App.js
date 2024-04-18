@@ -1,15 +1,15 @@
 import { Divider } from '@mui/material';
 import './App.css';
 import Board from './components/Board';
-import { useState, useEffect, useContext, useMemo, Children, useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Context } from './Context';
+import AnimationFactory from './logic/AnimationFactory';
 
 const processGameInfo = (gameInfo) => {
-  const elements = {}
+
   gameInfo.player1.cards.forEach((card) => {
     card.hp = card.initial_hp
     card.attack = card.initial_attack
-    console.log(card)
   })
   gameInfo.player2.cards.forEach((card) => {
     card.hp = card.initial_hp
@@ -25,8 +25,6 @@ function App() {
       "player1": {"cards": []},
       "player2": {"cards": []}
   });
-  const [loading, setLoading] = useState(true);
-  const [eventSequence, setEventSequence] = useState(0);
   const con = useContext(Context)
   con.gameInfo = gameInfo
 
@@ -35,7 +33,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setGameInfo(processGameInfo(data));
-        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
@@ -43,42 +40,20 @@ function App() {
       });
   }, []);
 
-  const startAnimation = () => {
+  const startAnimation = async () => {
 
-    const { source_id , target_id } = con.gameInfo.events[eventSequence]
+    const board = con.elements
 
-    if (eventSequence >= con.gameInfo.events.length - 1) {
-      console.log('No more events')
-      return 
+    for (const event of con.gameInfo.events) {
+      const board = con.elements
+      await new AnimationFactory().createAnimation(event, board).run()
     }
-
-    const attacker = con.elements[source_id].current
-    const target = con.elements[target_id].current
-    
-    attacker.style.backgroundColor = 'red'
-    target.style.backgroundColor = 'green'
-
-    const startCoordinates = attacker.getBoundingClientRect();
-    const endCoordinates = target.getBoundingClientRect();
-    // Calculate the direction and distance for animation
-    const deltaX = endCoordinates.left - startCoordinates.left;
-    const deltaY = endCoordinates.top - startCoordinates.top;
-    const animationDuration = 500; // Set the duration in milliseconds
-
-    attacker.style.transition = `transform ${animationDuration}ms ease-in-out`;
-    attacker.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-
-    setTimeout(() => {
-      attacker.style.transform = 'translate(0, 0)';
-      attacker.style.backgroundColor = '#ccc'
-      target.style.backgroundColor = '#ccc'
-      setEventSequence(eventSequence + 1)
-    }, animationDuration);
+    console.log('No more events')
   };
 
   return (
     <div className="App">
-      <h1>GAME: EVENT #{eventSequence}</h1>
+      <h1>GAME</h1>
       <Context.Provider value={con}>
         <Board player={1}/>
         <Divider/>
