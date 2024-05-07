@@ -6,7 +6,7 @@ export default class DieAnimation extends Animation{
     super(board, metadata);
     this.type = 'die';
     this.setTarget()
-    this.animationDuration = 100;
+    this.animationDuration = 500;
   }
 
   start() {

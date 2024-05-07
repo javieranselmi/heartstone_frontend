@@ -8,6 +8,7 @@ export default class AttackAnimation extends Animation{
     this.setSource()
     this.setTarget()
     this.animationDuration = 1000;
+    this.afterEndTime = 1000;
   }
 
   calculateCoordinates() {

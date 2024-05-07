@@ -8,6 +8,7 @@ export default class Animation {
       }
       this.board = board
       this.metadata = metadata
+      this.afterEndTime = 0
     }
 
     findReference(key) {
@@ -23,11 +24,19 @@ export default class Animation {
     }
   
     async run() {
+        console.log("STARTING..")
         this.start();
         return new Promise((resolve) => {
             setTimeout(() => {
+                console.log("ENDING..")
                 this.end();
-                resolve();
+                if (this.afterEndTime > 0) {
+                    setTimeout(() => {
+                        resolve();
+                    }, this.afterEndTime);
+                } else {
+                    resolve();
+                }
             }, this.animationDuration);     
         })
       }

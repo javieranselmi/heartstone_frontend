@@ -12,6 +12,8 @@ export default class ChangeStatsAnimation extends Animation{
   start() {
     //this.target.classList.add('shake')
     console.log('change_stats start')
+    this.metadata.hp = 1000
+    console.log(this.metadata)
   }
 
   async end() {
